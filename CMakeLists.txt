@@ -8,6 +8,7 @@ add_executable(layout
         components/component_brush.cpp
         components/component_frame.cpp
         components/component_list.cpp
+        util/counter.cpp
         )
 
 target_compile_definitions(layout PRIVATE -DSDL_MAIN_HANDLED)

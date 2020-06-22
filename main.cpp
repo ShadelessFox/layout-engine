@@ -6,49 +6,7 @@
 #include "constraints/constraint_center.hpp"
 #include "constraints/constraint_relative.hpp"
 #include "constraints/constraint_pixel.hpp"
-
-class Counter {
-public:
-    Counter(double updateRate)
-        : _updateRate(updateRate)
-    {
-    }
-
-    void tick()
-    {
-        _totalFrames++;
-
-        _lastFrameTime = SDL_GetTicks();
-        _delta = (_lastFrameTime - _prevFrameTime) / 1000.0;
-        _updateDelta += _delta;
-        _prevFrameTime = _lastFrameTime;
-
-        if (_updateDelta > _updateRate) {
-            _fps = _totalFrames / _updateDelta;
-            _totalFrames = 0;
-            _updateDelta -= _updateRate;
-        }
-    }
-
-    double value() const
-    {
-        return _fps;
-    }
-
-    double delta() const
-    {
-        return _delta;
-    }
-
-private:
-    double _updateRate;
-    double _delta { 0.0 };
-    double _updateDelta { 0.0 };
-    double _fps { 0.0 };
-    unsigned int _prevFrameTime { 0 };
-    unsigned int _lastFrameTime { 0 };
-    unsigned int _totalFrames { 0 };
-};
+#include "util/counter.hpp"
 
 int main()
 {
