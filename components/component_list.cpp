@@ -28,8 +28,6 @@ void GUI::Component::HorizontalListComponent::render(SDL_Renderer* ctx)
     auto id = 0;
     for (auto& child : _children) {
         child->adopt(this);
-        SDL_Log("Child #%d preferred width: %f\n", id++, child->compute<Constraint::SizeXConstraint>());
-
         frame.constraints().x() = Constraint::PixelConstraint<Constraint::OffsXConstraint>(offset);
         child->adopt(&frame);
         child->render(ctx);
